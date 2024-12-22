@@ -1,0 +1,281 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Socials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .nft-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .nft-card img {
+            width: 100%;
+        }
+        .nft-card .content {
+            padding: 20px;
+        }
+        .nft-card .content h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+        }
+        .nft-card .content p {
+            margin: 0 0 20px;
+        }
+        .nft-card .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nft-card .actions .price {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .nft-card .actions .buy-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .nft-card .actions .buy-button:hover {
+            background-color: #0056b3;
+        }
+        .image-link {
+  cursor: zoom-in; /* Change the cursor to a zoom-in icon on hover */
+}
+
+.image-link:hover {
+  text-decoration: none; /* Remove the underline on hover */
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NFT Socials</h1>
+    </header>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="nftmarketplace.html">Marketplace</a>
+        <a href="create.html">Create</a>
+        <form action="https://browseipfs.diamcircle.io/ipfs/QmZQfv26AikyMo3yM56vD4gfoY2pmqSZ2LXQNBB3kHvpH4">
+                        
+            <input type="submit" value="My Nft"></form>
+           </class>
+        </li>
+        
+    </nav>
+    <div class="container">
+        <div class="nft-card">
+            <img src="https://placehold.co/1200x800" alt="A digital artwork of a futuristic cityscape with tall skyscrapers and flying cars. The sky is a blend of pink and purple hues.">
+            <div class="content">
+                <h2>Futuristic Cityscape</h2>
+                <p>This NFT represents a digital artwork of a futuristic cityscape with tall skyscrapers and flying cars.</p>
+                <div class="actions">
+                    <span class="price">50 DIAM</span>
+                    <button class="buy-button" onclick="buyNFT('Futuristic Cityscape')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="nft-card">
+            <img src="https://placehold.co/1200x800" alt="A digital painting of a serene forest with a river flowing through it. The trees are lush green and the water is crystal clear.">
+            <div class="content">
+                <h2>Serene Forest</h2>
+                <p>This NFT represents a digital painting of a serene forest with a river flowing through it.</p>
+                <div class="actions">
+                    <span class="price">30 DIAM</span>
+                    <button class="buy-button" onclick="buyNFT('Serene Forest')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="nft-card">
+            <img src="https://placehold.co/1200x800" alt="A digital artwork depicting outer space with planets, stars, and galaxies. The colors are vibrant and the details are intricate.">
+            <div class="content">
+                <h2>Outer Space</h2>
+                <p>This NFT represents a digital artwork depicting outer space with planets, stars, and galaxies.</p>
+                <div class="actions">
+                    <span class="price">40 DIAM</span>
+                    <button class="buy-button" onclick="buyNFT('Outer Space')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/diamnet-sdk/2.0.5/diamnet-sdk.min.js"></script>
+    <script>
+        async function buyNFT(nftName) {
+            const userSecret = prompt("Please enter your Diamnet secret key:");
+            const nftImageUrl = "https://placehold.co/1200x800"; // Placeholder image URL, replace with actual IPFS URL
+
+            try {
+                const assetDetails = await createTestnetAsset(nftName, userSecret, nftImageUrl);
+                alert(`Successfully purchased ${nftName}.\nIssuer Public Key: ${assetDetails.issuerPublicKey}\nAsset Name: ${assetDetails.assetName}`);
+            } catch (error) {
+                console.error("Error purchasing NFT:", error);
+                alert("Failed to purchase NFT. Please try again.");
+            }
+        }
+
+        // Function to create an asset and activate the account on TESTNET
+        async function createTestnetAsset(assetName, userSecret, s3ImageUrl) {
+            try {
+                // Validate input
+                if (!assetName || !userSecret || !s3ImageUrl) {
+                    throw new Error("Missing required fields");
+                }
+
+                // Define constants for TESTNET
+                const auroraServerUrl = "https://diamtestnet.diamcircle.io/";
+                const networkPassphrase = "Diamante Testnet 2024";
+                const masterSecret = "SB3SSDG2VNLGMX4OZLSL6FI4XO6NTA2QM3AXPLDLCMDIEWWTTAZW2MHY"; 
+                const startingBalance = "5";
+
+                // Diamante server setup
+                const server = new Aurora.Server(auroraServerUrl);
+
+                // Master account (for activation purposes)
+                const masterKeypair = DiamnetSdk.Keypair.fromSecret(masterSecret);
+                console.log("Master Keypair:", masterKeypair.publicKey());
+
+                const userKeypair = DiamnetSdk.Keypair.fromSecret(userSecret);
+                console.log("User Keypair:", userKeypair.publicKey());
+
+                // Create a new keypair for the asset issuer
+                const issuerKeypair = DiamnetSdk.Keypair.random();
+                const issuerPublicKey = issuerKeypair.publicKey();
+
+                const asset = new DiamnetSdk.Asset(assetName, issuerPublicKey);
+
+                // Activate the new keypair using the master account
+                const masterAccount = await server.loadAccount(masterKeypair.publicKey());
+
+                // Check master account balance
+                const masterBalances = masterAccount.balances;
+                const masterBalance = masterBalances.find(
+                    (balance) => balance.asset_type === "native"
+                ).balance;
+
+                // Check if the balance is sufficient
+                if (parseFloat(masterBalance) <= 1) {
+                    throw new Error("Master account balance is insufficient.");
+                }
+
+                // Download the image from S3
+                const imagePath = "temp-image.png";
+                const response = await axios({
+                    url: s3ImageUrl,
+                    method: "GET",
+                    responseType: "arraybuffer",
+                });
+
+                // Convert the image buffer to PNG and save locally
+                await sharp(response.data).png().toFile(imagePath);
+
+                // Upload image to IPFS
+                const imageBuffer = fs.readFileSync(imagePath);
+                const ipfsClient = ipfsHttpClient.create({ url: "https://uploadipfs.diamcircle.io" });
+                const ipfsResult = await ipfsClient.add(imageBuffer);
+                const imageCID = ipfsResult.path;
+                console.log("Image CID:", imageCID);
+
+                // Remove the local image file after upload
+                fs.unlinkSync(imagePath);
+
+                // Create the account
+                const createAccountTransaction = new DiamnetSdk.TransactionBuilder(masterAccount, {
+                    fee: DiamnetSdk.BASE_FEE,
+                    networkPassphrase: networkPassphrase,
+                })
+                    .addOperation(
+                        DiamnetSdk.Operation.createAccount({
+                            destination: issuerPublicKey,
+                            startingBalance: startingBalance,
+                        })
+                    )
+                    .addOperation(
+                        DiamnetSdk.Operation.changeTrust({
+                            asset: asset,
+                            source: userKeypair.publicKey(),
+                        })
+                    )
+                    .addOperation(
+                        DiamnetSdk.Operation.manageData({
+                            name: assetName,
+                            source: issuerPublicKey,
+                            value: imageCID.toString(),
+                        })
+                    )
+                    .addOperation(
+                        DiamnetSdk.Operation.payment({
+                            destination: userKeypair.publicKey(),
+                            source: issuerPublicKey,
+                            asset: asset,
+                            amount: "0.0000001",
+                        })
+                    )
+                    .addOperation(
+                        DiamnetSdk.Operation.setOptions({
+                            source: issuerPublicKey,
+                            masterWeight: 0,
+                        })
+                    )
+                    .setTimeout(10000)
+                    .build();
+
+                // Sign the transaction
+                createAccountTransaction.sign(masterKeypair, issuerKeypair, userKeypair);
+
+                await server.submitTransaction(createAccountTransaction);
+
+                // Return the XDR and asset name
+                return { issuerPublicKey, assetName };
+            } catch (error) {
+                console.error("Error:", error);
+                throw error;
+            }
+        }
+    </script>
+</body>
+</html>

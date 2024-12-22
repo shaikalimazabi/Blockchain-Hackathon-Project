@@ -1,0 +1,165 @@
+<!-- HTML structure for the NFT Social App using Diamante Blockchain -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NFT Social App for creating, buying, and selling NFTs, designs, logos, etc. on Diamante Blockchain">
+    <title>NFT Social App</title>
+    <!-- Importing JavaScript libraries for blockchain integration -->
+    <script src="https://cdn.diamante-blockchain.com/sdk.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #282c34;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #282c34;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        form label {
+            margin-bottom: 5px;
+        }
+
+        form input, form select, form textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #282c34;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #50575e;
+        }
+
+        #nftList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .nft-item {
+            background-color: white;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .nft-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header section with navigation links -->
+    <header>
+        <h1>NFT Social App</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="create.html">Create NFT</a></li>
+                <li><a href="nftmarketplace.html">Marketplace</a></li>
+                <li><form action="https://browseipfs.diamcircle.io/ipfs/QmZQfv26AikyMo3yM56vD4gfoY2pmqSZ2LXQNBB3kHvpH4">
+                        
+                    <input type="submit" value="My Nft"></form>
+                   </class>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content section -->
+    <main>
+        <!-- Section for creating NFTs -->
+        <section id="create">
+            <h2>Create NFT, Logo, or Design</h2>
+            <form id="createNFTForm">
+                <label for="nftType">Choose Type:</label>
+                <select id="nftType">
+                    <option value="nft">NFT</option>
+                    <option value="logo">Logo</option>
+                    <option value="design">Design</option>
+                </select>
+
+                <label for="nftTitle">Title:</label>
+                <input type="text" id="nftTitle" placeholder="Enter title" required>
+
+                <label for="nftDescription">Description:</label>
+                <textarea id="nftDescription" placeholder="Enter description" required></textarea>
+
+                <label for="nftImage">Upload Image:</label>
+                <input type="file" id="nftImage" accept="image/*" required>
+
+                <button type="submit">Create</button>
+            </form>
+        </section>
+
+        <!-- Section for displaying NFTs in the marketplace -->
+        <section id="marketplace">
+            <h2>Marketplace</h2>
+            <div id="nftList">
+                <!-- Dynamic content to load NFTs will appear here -->
+            </section>
